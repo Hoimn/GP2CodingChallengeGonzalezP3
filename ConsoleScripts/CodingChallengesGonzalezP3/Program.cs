@@ -3,140 +3,182 @@ using System.Security.Cryptography.X509Certificates;
 
 class Challenges
 {
-    public static void Main(string[] args)
+        public static void Main(string[] args)
     {
-        Console.WriteLine("Pick a Challenge any challenge");
+
+        Console.WriteLine("Pick a number any number");
         bool running = true;
 
         while (running)
         {
+            Console.WriteLine("\nplease choose a function to perform:");
+            Console.WriteLine("1. Sum");
+            Console.WriteLine("2. Minutes");
+            Console.WriteLine("3. +1");
+            Console.WriteLine("4. Circut Power");
+            Console.WriteLine("5. Age");
+            Console.WriteLine("6. Area of triangle");
+            Console.WriteLine("7. Positive or negative");
+            Console.WriteLine("0. and press 0 to quit");
 
-            public static void Sum()
-        {
-            Console.WriteLine("Welcome to my coding challenge. There will be a vareity of differnet funstion you will have to choose from. Please pick one");
+            var choice = Console.ReadLine();
 
-            Console.WriteLine("Today we are going to us ethe number adder called SUM. Please input 2 numbers for us to add. \n");
-
-            var number1 = Console.ReadLine();
-            int number1int = int.Parse(number1);
-
-
-            Console.WriteLine("Coolbeans. Please input a 2nd number");
-
-            var number2 = Console.ReadLine();
-            int number2int = int.Parse(number2);
-
-            Console.WriteLine("The sum of the number: " + number1 + " and the number: " + number2 + " is equal to " + Sum(number1int, number2int));
-            Sum(number1int, number2int);
-        }
-
-            public static void Minutes()
-        {
-            Console.WriteLine("Today we will convert seconds to minutes");
-
-            var number3 = Console.ReadLine();
-            int number3int = int.Parse(number3);
-
-
-            Console.WriteLine(number3 + " minutes is equal to " + ConvertSecond(number3int) + " seconds ");
-        }
-
-            public static void PlusOne()
-        {
-            Console.WriteLine(" What will the answer be if you add one to a number input a number to see");
-            var number4 = Console.ReadLine();
-            int number4int = int.Parse(number4);
-
-            Console.WriteLine("If you add +1 to " + number4 + " you get " + PlusOne(number4int));
-        }
-
-            public static void CircutPower()
-        {
-            Console.WriteLine("Good Morning Sir its been 5 days after the war so TYPE IN A NUMBER FOR THE VOLTAGE AND ONE FOR THE CURRENT");
-
-            var number5 = Console.ReadLine();
-            int number5int = int.Parse(number5);
-
-            var number6 = Console.ReadLine();
-            int number6int = int.Parse(number6);
-
-            Console.WriteLine(number5 + " voltage and a current of " + number6 + " creates the circut power of " + CircuitPower(number5int, number6int));
-        }
-            public static void Age();
-        }
-            Console.WriteLine("How old am in days");
-            var number7 = Console.ReadLine();
-            var number7int = int.Parse(number7);
-        }
-
-
-    public static void TriangleArea()
-        {
-            Console.WriteLine("I'm uh Im uh uh " + number7 + "  so that means tha uh Im uh " + DaysinAYEAR(number7int) + " days old");
-
-            Console.WriteLine(" We need to make a triange how tall should it be");
-            var number8 = Console.ReadLine();
-            var number8int = int.Parse(number8);
-
-            Console.WriteLine(" We need to make a triange how wide should it be");
-            var number9 = Console.ReadLine();
-            var number9int = int.Parse(number9);
-
-            Console.WriteLine(" The triangle with a height of " + number8 + " and a width of " + number9 + " has an area of " + triArea(number8int, number9int));
-        }
-
-    public static void LessorEqualto()
-        {
-            Console.WriteLine("Give a number");
-            var number10 = Console.ReadLine();
-            var number10int = int.Parse(number10);
-
-            Console.WriteLine("Its " + Lessorequalto(number10int) + " that " + number10 + " is less than or equal to 0");
+            switch (choice)
+            {
+                case "1":
+                    PerformSum();
+                    break;
+                case "2":
+                    ConvertMinutesToSeconds();
+                    break;
+                case "3":
+                    AddOneToNumber();
+                    break;
+                case "4":
+                    CalculateCircuitPower();
+                    break;
+                case "5":
+                    CalculateAgeInDays();
+                    break;
+                case "6":
+                    CalculateTriangleArea();
+                    break;
+                case "7":
+                    CheckIfNumberIsPositiveOrNegative();
+                    break;
+                case "0":
+                    running = false;
+                    Console.WriteLine("Bye bye");
+                    break;
+                default:
+                    Console.WriteLine("Not that one another one");
+                    break;
+            }
         }
     }
 
-public static int Sum(int number1, int number2)
+    private static void PerformSum()
+    {
+
+        int number1 = GetIntegerInput("Today we are going to us ethe number adder called SUM. Please input 2 numbers for us to add. \n");
+        int number2 = GetIntegerInput("Coolbeans. Please input a 2nd number");
+        Console.WriteLine("The sum of {number1} and {number2} is {Sum(number1, number2)}.");
+    }
+
+    private static void ConvertMinutesToSeconds()
+    {
+        int minutes = GetIntegerInput("Please enter the number of minutes to convert to seconds:");
+        Console.WriteLine($"{minutes} minutes is {Multiply(minutes)} seconds.");
+    }
+
+    private static void AddOneToNumber()
+    {
+        int number = GetIntegerInput("Please enter a number to which I will add 1:");
+        Console.WriteLine($"{number} + 1 is {Add(number)}.");
+    }
+
+    private static void CalculateCircuitPower()
+    {
+        int voltage = GetIntegerInput("Please enter the voltage:");
+        int current = GetIntegerInput("Please enter the current:");
+        Console.WriteLine($"The circuit power is {Circuit(voltage, current)} watts.");
+    }
+
+    private static void CalculateAgeInDays()
+    {
+        int ageInYears = GetIntegerInput("Please enter your age in years:");
+        Console.WriteLine($"You are approximately {Aged(ageInYears)} days old.");
+    }
+
+    private static void CalculateTriangleArea()
+    {
+        float baseLength = GetFloatInput("Please enter the base of the triangle:");
+        float height = GetFloatInput("Please enter the height of the triangle:");
+        Console.WriteLine($"The area of the triangle is {CalculateArea(baseLength, height)}.");
+    }
+
+    private static void CheckIfNumberIsPositiveOrNegative()
+    {
+        int number = GetIntegerInput("Please enter a number to check if it's positive or negative:");
+        Console.WriteLine($"The number is {(IsNegative(number) ? "negative" : "positive")}.");
+    }
+
+
+    private static int Sum(int number1, int number2)
     {
         return number1 + number2;
     }
 
-public static int ConvertSecond(int number3)
+    private static int Multiply(int minutes)
     {
-        return number3 * 60;
+        return minutes * 60;
     }
 
-public static int  PlusOne(int number4)
+    private static int Add(int number)
     {
-
-        return number4 + 1;
+        return number + 1;
     }
 
-public  static int CircuitPower(int  number5, int number6)
+    private static int Circuit(int voltage, int current)
     {
-        return number5 * number6;
+        return voltage * current;
     }
 
-public  static int DaysinAYEAR(int number7)
+    private static int Aged(int years)
     {
-        return number7 * 365;
+        return years * 365;
     }
 
-public static float triArea(float number8, float number9)
+    private static float CalculateArea(float baseLength, float height)
     {
-        return (number8 * number9)/2;
+        return (baseLength * height) / 2;
     }
 
- public static bool Lessorequalto(int NUMBER10)
+    private static bool IsNegative(int number)
     {
-        if (NUMBER10 >= 0)
+        return number < 0;
+    }
+
+    private static int GetIntegerInput(string prompt)
+    {
+        Console.WriteLine(prompt);
+        while (true)
         {
-            return false;   
-        }
-        else
-        {
-            return true;
+            if (int.TryParse(Console.ReadLine(), out int result))
+                return result;
+            Console.WriteLine("Invalid input. Please enter a valid integer.");
         }
     }
 
+    private static float GetFloatInput(string prompt)
+    {
+        Console.WriteLine(prompt);
+        while (true)
+        {
+            if (float.TryParse(Console.ReadLine(), out float result))
+                return result;
+            Console.WriteLine("Invalid input. Please enter a valid number.");
+        }
+    }
+
+    public static bool ReverseTheBool()
+    {
+        Console.WriteLine("This code make the truth a lie and a false");
+        Console.WriteLine("Type in 1 for truth and 2 for false");
+        var number = Console.ReadLine();
+        int numberInt;
+        while (!int.TryParse(number, out numberInt))
+        {
+            Console.WriteLine("Thats neither a truth or false trey again");
+            number = Console.ReadLine();
+        }
+        if (numberInt == 1)
+        {
+            Console.WriteLine("Truth turned into False");
+        }
+        else if (numberInt == 2)
+            Console.WriteLine("False turned into Truth");
+    }
 }
+
 
